@@ -1,8 +1,8 @@
 from openpyxl import *
 import Tkinter as tkinter
 
-workbook_save_name = "fuckthis1.xlsx"
-workbook_load_name = "fuckthis1.xlsx"
+workbook_save_name = "scoutingdata.xlsx"
+workbook_load_name = "blank.xlsx"
 
 team_list = [1, 192, 3, 4, 5, 6, 7, 8, 9, 10,
 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
