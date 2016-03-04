@@ -216,14 +216,15 @@ def button_entry_test(window, general_entry, auto_choices, shooting_entries, cat
 
 def gui_init():
 	window = tkinter.Tk()
-	window.title = ("GRT 2016 Scouting Data Input")
-	window.geometry("1200x500")
+	#window.configure(background = "red")
+	window.title(string = "GRT 2016 Scouting Data Input")
+	window.geometry("750x450")
 
-	team_label = tkinter.Label(window, text = "team number")
+	team_label = tkinter.Label(window, text = "Team Number")
 	team_number_entry = tkinter.Entry(window)
 	team_number_entry.insert(0, "192")
 
-	match_label = tkinter.Label(window, text = "match number")
+	match_label = tkinter.Label(window, text = "Match Number")
 	match_number_entry = tkinter.Entry(window)
 
 	general_entry = [team_number_entry, match_number_entry]
@@ -234,22 +235,22 @@ def gui_init():
 	high_var = tkinter.IntVar()
 	recross_var = tkinter.IntVar()
 	none_var = tkinter.IntVar()
-	auto_label = tkinter.Label(window, text = "autonomous")
-	auto_reach = tkinter.Checkbutton(window, text = "reach", variable = reach_var)
-	auto_cross = tkinter.Checkbutton(window, text = "cross", variable = cross_var)
-	auto_low = tkinter.Checkbutton(window, text = "shoot low", variable = low_var)
-	auto_high = tkinter.Checkbutton(window, text = "shoot high", variable = high_var)
-	auto_recross = tkinter.Checkbutton(window, text = "recross", variable = recross_var)
-	auto_none = tkinter.Checkbutton(window, text = "nothing", variable = none_var)
+	auto_label = tkinter.Label(window, text = "Autonomous")
+	auto_reach = tkinter.Checkbutton(window, text = "Reach", variable = reach_var)
+	auto_cross = tkinter.Checkbutton(window, text = "Cross", variable = cross_var)
+	auto_low = tkinter.Checkbutton(window, text = "Shoot low", variable = low_var)
+	auto_high = tkinter.Checkbutton(window, text = "Shoot high", variable = high_var)
+	auto_recross = tkinter.Checkbutton(window, text = "Recross", variable = recross_var)
+	auto_none = tkinter.Checkbutton(window, text = "Nothing", variable = none_var)
 	auto_choices = [reach_var, cross_var, low_var, high_var, recross_var, none_var]
 
-	shooting_label = tkinter.Label(window, text = "shooting")
-	high_label = tkinter.Label(window, text = "high")
-	low_label = tkinter.Label(window, text = "low")
-	attempts_label0 = tkinter.Label(window, text = "attempts")
-	successes_label0 = tkinter.Label(window, text = "successes")
-	attempts_label1 = tkinter.Label(window, text = "attempts")
-	successes_label1 = tkinter.Label(window, text = "successes")
+	shooting_label = tkinter.Label(window, text = "Shooting")
+	high_label = tkinter.Label(window, text = "High")
+	low_label = tkinter.Label(window, text = "Low")
+	attempts_label0 = tkinter.Label(window, text = "Attempts")
+	successes_label0 = tkinter.Label(window, text = "Successes")
+	attempts_label1 = tkinter.Label(window, text = "Attempts")
+	successes_label1 = tkinter.Label(window, text = "Successes")
 	high_attempts_entry = tkinter.Entry(window)
 	high_successes_entry = tkinter.Entry(window)
 	low_attempts_entry = tkinter.Entry(window)
@@ -257,40 +258,40 @@ def gui_init():
 	shooting_entries = [high_attempts_entry, high_successes_entry,
 		low_attempts_entry, low_successes_entry]
 
-	cat_a_label = tkinter.Label(window, text = "category a:")
+	cat_a_label = tkinter.Label(window, text = "Category A:")
 	cat_a_choice = tkinter.Variable()
-	portcullis_choice = tkinter.Radiobutton(window, text = "portcullis", variable = cat_a_choice, value = "portcullis")
-	cheval_choice = tkinter.Radiobutton(window, text = "cheval de frise", variable = cat_a_choice, value = "cheval de frise")
+	portcullis_choice = tkinter.Radiobutton(window, text = "Portcullis", variable = cat_a_choice, value = "portcullis")
+	cheval_choice = tkinter.Radiobutton(window, text = "Cheval de Frise", variable = cat_a_choice, value = "cheval de frise")
 	#portcullis_label = tkinter.Label(window, text = "portcullis")
 	#cheval_label = tkinter.Label(window, text = "cheval")
 	cat_a_entry = tkinter.Entry(window)
 
-	cat_b_label = tkinter.Label(window, text = "category b:")
+	cat_b_label = tkinter.Label(window, text = "Category B:")
 	cat_b_choice = tkinter.Variable()
-	moat_choice = tkinter.Radiobutton(window, text = "moat", variable = cat_b_choice, value = "moat")
-	ramparts_choice = tkinter.Radiobutton(window, text = "ramparts", variable = cat_b_choice, value = "ramparts")
+	moat_choice = tkinter.Radiobutton(window, text = "Moat", variable = cat_b_choice, value = "moat")
+	ramparts_choice = tkinter.Radiobutton(window, text = "Ramparts", variable = cat_b_choice, value = "ramparts")
 	#moat_label = tkinter.Label(window, text = "moat")
 	#ramparts_label = tkinter.Label(window, text = "ramparts")
 	cat_b_entry = tkinter.Entry(window)
 
-	cat_c_label = tkinter.Label(window, text = "category c:")
+	cat_c_label = tkinter.Label(window, text = "Category C:")
 	cat_c_choice = tkinter.Variable()
-	drawbridge_choice = tkinter.Radiobutton(window, text = "drawbridge", variable = cat_c_choice, value = "drawbridge")
-	sally_port_choice = tkinter.Radiobutton(window, text = "sally port", variable = cat_c_choice, value = "sally port")
+	drawbridge_choice = tkinter.Radiobutton(window, text = "Drawbridge", variable = cat_c_choice, value = "drawbridge")
+	sally_port_choice = tkinter.Radiobutton(window, text = "Sally Port", variable = cat_c_choice, value = "sally port")
 	#drawbridge_label = tkinter.Label(window, text = "drawbridge")
 	#sally_port_label = tkinter.Label(window, text = "sally port")
 	cat_c_entry = tkinter.Entry()
 
-	cat_d_label = tkinter.Label(window, text = "category d:")
+	cat_d_label = tkinter.Label(window, text = "Category D:")
 	cat_d_choice = tkinter.Variable()
-	rock_wall_choice = tkinter.Radiobutton(window, text = "rock wall", variable = cat_d_choice, value = "rock wall")
-	rough_terrain_choice = tkinter.Radiobutton(window, text = "rough terrain", variable = cat_d_choice, value = "rough terrain")
+	rock_wall_choice = tkinter.Radiobutton(window, text = "Rock Wall", variable = cat_d_choice, value = "rock wall")
+	rough_terrain_choice = tkinter.Radiobutton(window, text = "Rough Terrain", variable = cat_d_choice, value = "rough terrain")
 	#rock_wall_label = tkinter.Label(window, text = "rock wall")
 	#rough_terrain_label = tkinter.Label(window, text = "rough terrain")
 	cat_d_entry = tkinter.Entry()
 
-	cat_e_label = tkinter.Label(window, text = "category e:")
-	low_bar_label = tkinter.Label(window, text = "low bar")
+	cat_e_label = tkinter.Label(window, text = "Category E:")
+	low_bar_label = tkinter.Label(window, text = "Low Bar")
 	cat_e_entry = tkinter.Entry()
 
 	cat_choices = [cat_a_choice, cat_b_choice,
@@ -300,21 +301,21 @@ def gui_init():
 
 	#cross_ball_label = tkinter.Label(window, text = "cross w/ ball?")
 	cross_ball_var = tkinter.Variable()
-	cross_ball_check = tkinter.Checkbutton(window, text = "cross w/ ball?")
+	cross_ball_check = tkinter.Checkbutton(window, text = "Cross w/ Ball?")
 
-	climbing_label = tkinter.Label(window, text = "climbing")
+	climbing_label = tkinter.Label(window, text = "Climbing")
 	climbing_choice = tkinter.Variable()
-	climb_no_attempt = tkinter.Radiobutton(window, text = "didn't attempt", variable = climbing_choice, value = 0)
-	climb_attempt = tkinter.Radiobutton(window, text = "attempt and fail", variable = climbing_choice, value = 1)
-	climb_success = tkinter.Radiobutton(window, text = "success", variable = climbing_choice, value = 2)
+	climb_no_attempt = tkinter.Radiobutton(window, text = "Didn't attempt", variable = climbing_choice, value = 0)
+	climb_attempt = tkinter.Radiobutton(window, text = "Attempt and fail", variable = climbing_choice, value = 1)
+	climb_success = tkinter.Radiobutton(window, text = "Success", variable = climbing_choice, value = 2)
 
 	robot_RIP_var = tkinter.IntVar()
 	robot_RIP_button = tkinter.Checkbutton(window, text = "Did the robot break/lose comm?", variable = robot_RIP_var)
 
 	other_choices = [cross_ball_var, climbing_choice, robot_RIP_var]
 
-	button = tkinter.Button(window, text = "enter", command = (lambda: button_entry_test(window, general_entry, auto_choices, shooting_entries, cat_choices, cat_entries, other_choices)))
-	quit_button = tkinter.Button(window, text = "quit", command = (lambda: quit_gui(window)))
+	button = tkinter.Button(window, text = "Enter", command = (lambda: button_entry_test(window, general_entry, auto_choices, shooting_entries, cat_choices, cat_entries, other_choices)))
+	quit_button = tkinter.Button(window, text = "Quit", command = (lambda: quit_gui(window)))
 	#(lambda event, win = window, entry = team_number_entry: button_entry_test(win, entry))
 
 	team_label.grid(row = 0, column = 0)
