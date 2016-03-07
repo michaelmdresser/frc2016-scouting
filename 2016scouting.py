@@ -35,8 +35,9 @@ def init_shot_sheet(worksheet):
 			match += 1
 		is_attempts = not is_attempts
 
-	for i in range(2, len(team_list) + 2):
-		worksheet.cell(row = i, column = 1, value = team_list[i - 2])
+	for row in range(2, len(team_list) + 2):
+		worksheet.cell(row = row, column = 1, value = team_list[i - 2])
+	
 
 def init_shot_analysis_sheet(worksheet):
 
@@ -104,6 +105,12 @@ def init_shot_analysis_sheet(worksheet):
 	fill_single_function_column(28, "STDEV", "Z", "Q")
 	
 def init_general_sheet(worksheet):
+	Alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K",
+	"L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+	
+	worksheet.cell(row = 1, column = len(team_list) + 2, value = "average")
+	worksheet.cell(row = 1, column = len(team_list) + 3, value = "stdev")
+	
 	match = 1
 	for column in range(2, 12):
 		worksheet.cell(row = 1, column = column, value = "Match " + str(match))
@@ -111,6 +118,8 @@ def init_general_sheet(worksheet):
 
 	for row in range(2, len(team_list) + 2):
 		worksheet.cell(row = row, column = 1, value = team_list[row - 2])
+		worksheet.cell(row = row, column = len(team_list) + 2, value = "=AVERAGE(B" + str(row) + ":K" + str(row) + ")")
+		worksheet.cell(row = row, column = len(team_list) + 3, value = "=STDEV(B" + str(row) + ":K" + str(row) + ")")
 
 def fill_shot_sheet(worksheet, team_number, matches_played, goal_values):
 	#hi
