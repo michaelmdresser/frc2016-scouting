@@ -107,6 +107,7 @@ def init_general_sheet(worksheet):
 	match = 1
 	for column in range(2, 12):
 		worksheet.cell(row = 1, column = column, value = "Match " + str(match))
+		match += 1
 
 	for row in range(2, len(team_list) + 2):
 		worksheet.cell(row = row, column = 1, value = team_list[row - 2])
