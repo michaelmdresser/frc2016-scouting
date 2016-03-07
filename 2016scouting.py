@@ -38,6 +38,71 @@ def init_shot_sheet(worksheet):
 	for i in range(2, len(team_list) + 2):
 		worksheet.cell(row = i, column = 1, value = team_list[i - 2])
 
+def init_shot_analysis_sheet(worksheet):
+
+	def fill_single_function_column(column, sheet_function, range_start, range_end):
+		for row in range(3, len(team_list) + 3):
+			worksheet.cell(row = row, column = column, value = "=" + sheet_function + "(" + range_start + str(row) + ":" + range_end + str(row) + ")")
+
+	Alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K",
+	"L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+	
+	worksheet.cell(row = 1, column = 2, value = "High Goal")
+	worksheet.cell(row = 1, column = 17, value = "Low Goal")
+	
+	for row in range(3, len(team_list) + 3):
+		worksheet.cell(row = row, column = 1, value = team_list[row - 3])
+	
+	for column in range(2, 12):
+		worksheet.cell(row = 2, column = column, value = "Match " + str(column - 1) + " Average")
+		attempts_index = (2 * (column - 2) + 1)
+		attempts_letter = Alphabet[attempts_index]
+		successes_letter = Alphabet[attempts_index + 1]
+		for row in range(3, len(team_list) + 3):
+			worksheet.cell(row = row, column = column, value = "=high!" + successes_letter + str(row - 1) + "/high!" + attempts_letter + str(row - 1))
+	
+	for column in range(17, 27):
+		worksheet.cell(row = 2, column = column, value = "Match " + str(column - 1) + " Average")
+		attempts_index = (2 * (column - 17) + 1)
+		attempts_letter = Alphabet[attempts_index]
+		successes_letter = Alphabet[attempts_index + 1]
+		for row in range(3, len(team_list) + 3):
+			worksheet.cell(row = row, column = column, value = "=low!" + successes_letter + str(row - 1) + "/low!" + attempts_letter + str(row - 1))
+		
+	
+	worksheet.cell(row = 2, column = 12, value = "Average")
+	worksheet.cell(row = 2, column = 13, value = "StDev")
+	worksheet.cell(row = 2, column = 14, value = "Avg goals/match")
+	worksheet.cell(row = 2, column = 15, value = "StDev goals/match")
+	
+	worksheet.cell(row = 2, column = 27, value = "Average")
+	worksheet.cell(row = 2, column = 28, value = "StDev")
+	worksheet.cell(row = 2, column = 29, value = "Avg goals/match")
+	worksheet.cell(row = 2, column = 30, value = "StDev goals/match")
+	
+	#=AVERAGE(High!C2, High!E2, High!G2, High!I2, High!K2, High!M2, High!O2, High!Q2, High!S2, High!U2)
+	for row in range(3, len(team_list) + 3):
+		column = 14
+		worksheet.cell(row = row, column = column, value = "=AVERAGE(high!C" + str(row - 1) + ", high!E" + str(row - 1) + ", high!G" + str(row - 1) + ", high!I" + str(row - 1) + ", high!K" + str(row - 1) + ", high!M" + str(row - 1) + ", high!O" + str(row - 1) + ", high!Q" + str(row - 1) + ", high!S" + str(row - 1) + ", high!U" + str(row - 1) + ")")
+	
+	for row in range(3, len(team_list) + 3):
+		column = 15
+		worksheet.cell(row = row, column = column, value = "=STDEV(high!C" + str(row - 1) + ", high!E" + str(row - 1) + ", high!G" + str(row - 1) + ", high!I" + str(row - 1) + ", high!K" + str(row - 1) + ", high!M" + str(row - 1) + ", high!O" + str(row - 1) + ", high!Q" + str(row - 1) + ", high!S" + str(row - 1) + ", high!U" + str(row - 1) + ")")
+	
+	
+	for row in range(3, len(team_list) + 3):
+		column = 29
+		worksheet.cell(row = row, column = column, value = "=AVERAGE(low!C" + str(row - 1) + ", low!E" + str(row - 1) + ", low!G" + str(row - 1) + ", low!I" + str(row - 1) + ", low!K" + str(row - 1) + ", low!M" + str(row - 1) + ", low!O" + str(row - 1) + ", low!Q" + str(row - 1) + ", low!S" + str(row - 1) + ", low!U" + str(row - 1) + ")")
+	
+	for row in range(3, len(team_list) + 3):
+		column = 30
+		worksheet.cell(row = row, column = column, value = "=STDEV(low!C" + str(row - 1) + ", low!E" + str(row - 1) + ", low!G" + str(row - 1) + ", low!I" + str(row - 1) + ", low!K" + str(row - 1) + ", low!M" + str(row - 1) + ", low!O" + str(row - 1) + ", low!Q" + str(row - 1) + ", low!S" + str(row - 1) + ", low!U" + str(row - 1) + ")")
+	
+	fill_single_function_column(12, "AVERAGE", "B", "K")
+	fill_single_function_column(13, "STDEV", "B", "K")
+	fill_single_function_column(27, "AVERAGE", "Q", "Z")
+	fill_single_function_column(28, "STDEV", "Z", "Q")
+	
 def init_general_sheet(worksheet):
 	match = 1
 	for column in range(2, 12):
@@ -396,6 +461,7 @@ defense_sheets = [None, None, None, None, None, None, None, None, None]
 # [portcullis, cheval, moat, ramparts, drawbridge, sally, workwall, roughterrain, lowbar]
 
 if len(scouting_data.get_sheet_names()) < 3:
+	shot_analysis_sheet = scouting_data.create_sheet(title = "shot analysis")
 	no_sheet = scouting_data.create_sheet(title = "no")
 	init_no_sheet(no_sheet)
 
@@ -425,6 +491,8 @@ if len(scouting_data.get_sheet_names()) < 3:
 	init_general_sheet(rip_sheet)
 	init_shot_sheet(high_sheet)
 	init_shot_sheet(low_sheet)
+	
+	init_shot_analysis_sheet(shot_analysis_sheet)
 
 	for defense_sheet in defense_sheets:
 		init_general_sheet(defense_sheet)
@@ -470,6 +538,8 @@ else:
 			climb_sheet = sheet
 		elif sheet.title == "rip":
 			rip_sheet = sheet
+		elif sheet.title == "shot analysis":
+			shot_analysis_sheet = sheet
 
 
 print defense_sheets[1]
