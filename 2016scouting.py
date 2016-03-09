@@ -116,10 +116,13 @@ def init_general_sheet(worksheet):
 		worksheet.cell(row = 1, column = column, value = "Match " + str(match))
 		match += 1
 
+	worksheet.cell(row = 1, column = 12, value = "avg")
+	worksheet.cell(row = 1, column = 13, value = "stdev")
+	
 	for row in range(2, len(team_list) + 2):
 		worksheet.cell(row = row, column = 1, value = team_list[row - 2])
-		worksheet.cell(row = row, column = len(team_list) + 2, value = "=AVERAGE(B" + str(row) + ":K" + str(row) + ")")
-		worksheet.cell(row = row, column = len(team_list) + 3, value = "=STDEV(B" + str(row) + ":K" + str(row) + ")")
+		worksheet.cell(row = row, column = 12, value = "=AVERAGE(B" + str(row) + ":K" + str(row) + ")")
+		worksheet.cell(row = row, column = 13, value = "=STDEV(B" + str(row) + ":K" + str(row) + ")")
 
 def fill_shot_sheet(worksheet, team_number, matches_played, goal_values):
 	#hi
