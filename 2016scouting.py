@@ -17,14 +17,17 @@ for i in range(0, len(team_list)):
 	team_matches_played.append(0)
 
 def init_no_sheet(worksheet):
+	# initializes a worksheet that stores the number of matches recorded for each team
 	for row in range(2, len(team_list) + 2):
 		worksheet.cell(row = row, column = 1, value = team_list[row - 2])
 		if worksheet.cell(row = row, column = 2).value == None:
 			worksheet.cell(row = row, column = 2).value = 0
 	
 	worksheet.cell(row = 1, column = 2, value = "matches played")
+	worksheet.cell(row = 1, column = 3, value = "cross w/ ball?")
 
 def init_shot_sheet(worksheet):
+	# initalizes a worksheet that stores shot data (high or low)
 	match = 1
 	is_attempts = True
 	for column in range(2, 22):
@@ -40,7 +43,9 @@ def init_shot_sheet(worksheet):
 	
 
 def init_shot_analysis_sheet(worksheet):
+	# intializes a worksheet that pulls shot data into excel functions for later reading
 	def fill_single_function_column(column, sheet_function, range_start, range_end):
+		# fills a column from row[range_start, range_end] with a certain sheet function
 		for row in range(3, len(team_list) + 3):
 			worksheet.cell(row = row, column = column, value = "=" + sheet_function + "(" + range_start + str(row) + ":" + range_end + str(row) + ")")
 
@@ -102,6 +107,9 @@ def init_shot_analysis_sheet(worksheet):
 	fill_single_function_column(28, "STDEV", "Z", "Q")
 	
 def init_general_sheet(worksheet):
+	# initializes a sheet for general data recording
+	# team numbers are down the first column, match numbers are across the top row
+	# includes avg and stdev functions for data analysis
 	Alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K",
 	"L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
 	
@@ -122,6 +130,7 @@ def init_general_sheet(worksheet):
 		worksheet.cell(row = row, column = 13, value = "=STDEV(B" + str(row) + ":K" + str(row) + ")")
 
 def fill_shot_sheet(worksheet, team_number, matches_played, goal_values):
+	# takes data from a match and fills it into a shot sheet
 	team_index = team_list.index(team_number)
 	matches_played = team_matches_played[team_index]
 
@@ -132,6 +141,7 @@ def fill_shot_sheet(worksheet, team_number, matches_played, goal_values):
 	worksheet.cell(row = entry_row, column = entry_column + 1, value = goal_values[1])
 
 def fill_defense_sheet(worksheet, team_number, matches_played, defense_crosses, defense_crosses_index):
+	# takes data from a match and fills it into a defense sheet
 	team_index = team_list.index(team_number)
 
 	entry_column = matches_played + 2
@@ -140,6 +150,7 @@ def fill_defense_sheet(worksheet, team_number, matches_played, defense_crosses, 
 	worksheet.cell(row = entry_row, column = entry_column, value = defense_crosses[defense_crosses_index])
 
 def fill_ball_cross(team_number, cross_ball_value):
+	# takes data from a match and fills it into the no sheet
 	entry_row = team_list.index(team_number) + 2
 
 	if ((no_sheet.cell(row = entry_row, column = 3).value == None or
@@ -148,6 +159,7 @@ def fill_ball_cross(team_number, cross_ball_value):
 		no_sheet.cell(row = entry_row, column = 3).value = cross_ball_value
 
 def fill_auto_sheet(worksheet, team_number, matches_played, auto_values):
+	# takes data from a match and fills it into the auton sheet
 	team_index = team_list.index(team_number)
 	entry_column = matches_played + 2
 	entry_row = team_index + 2
@@ -178,6 +190,7 @@ def fill_auto_sheet(worksheet, team_number, matches_played, auto_values):
 	worksheet.cell(row = entry_row, column = entry_column, value = entry_value)
 
 def fill_climb_sheet(worksheet, team_number, matches_played, climb_value):
+	# takes data from a match and fills it into the climb sheet
 	team_index = team_list.index(team_number)
 	entry_column = matches_played + 2
 	entry_row = team_index + 2
@@ -185,6 +198,7 @@ def fill_climb_sheet(worksheet, team_number, matches_played, climb_value):
 	worksheet.cell(row = entry_row, column = entry_column, value = climb_value)
 
 def fill_rip_sheet(worksheet, team_number, matches_played, rip_value):
+	# takes data from a match and fills it into the rip sheet
 	team_index = team_list.index(team_number)
 	entry_column = matches_played + 2
 	entry_row = team_index + 2
@@ -192,6 +206,7 @@ def fill_rip_sheet(worksheet, team_number, matches_played, rip_value):
 	worksheet.cell(row = entry_row, column = entry_column, value = rip_value)
 
 def data_entry(general_values, auto_values, shooting_values, defenses_chosen, defense_crosses, other_values):
+	# takes full set of parsed match data from button_entry and calls data filling functions
 	team_number = general_values[0]
 	team_number = int(team_number)
 	team_index = team_list.index(team_number)
@@ -215,7 +230,10 @@ def data_entry(general_values, auto_values, shooting_values, defenses_chosen, de
 	no_sheet.cell(row = team_index + 2, column = 2).value += 1
 	scouting_data.save(workbook_save_name)
 
-def button_entry_test(window, general_entry, auto_choices, shooting_entries, cat_choices, cat_entries, other_choices):
+def button_entry(window, general_entry, auto_choices, shooting_entries, cat_choices, cat_entries, other_choices):
+	# called by the enter button on the GUI
+	# parses all entered values into a simplified format for data_entry
+	
 	#general_entry = [team_number_entry, match_number_entry]
 	#auto_choices = [reach_var, cross_var, low_var, high_var, recross_var, none_var]
 	#shooting_entries = [high_attempts_entry, high_successes_entry, low_attempts_entry, low_successes_entry]
@@ -255,6 +273,8 @@ def button_entry_test(window, general_entry, auto_choices, shooting_entries, cat
 			defenses_chosen, defense_crosses, other_values)
 
 def gui_init():
+	# creates the GUI for entry
+	
 	window = tkinter.Tk()
 	window.title(string = "GRT 2016 Scouting Data Input")
 	window.geometry("750x450")
@@ -344,7 +364,7 @@ def gui_init():
 
 	other_choices = [cross_ball_var, climbing_choice, robot_RIP_var]
 
-	button = tkinter.Button(window, text = "Enter", command = (lambda: button_entry_test(window, general_entry, auto_choices, shooting_entries, cat_choices, cat_entries, other_choices)))
+	button = tkinter.Button(window, text = "Enter", command = (lambda: button_entry(window, general_entry, auto_choices, shooting_entries, cat_choices, cat_entries, other_choices)))
 	quit_button = tkinter.Button(window, text = "Quit", command = (lambda: quit_gui(window)))
 	
 	team_label.grid(row = 0, column = 0)
@@ -422,6 +442,7 @@ defense_sheets = [None, None, None, None, None, None, None, None, None]
 # [portcullis, cheval, moat, ramparts, drawbridge, sally, workwall, roughterrain, lowbar]
 
 if len(scouting_data.get_sheet_names()) < 3:
+	# if loading from a blank or mostly blank workbook, create and assign all appropriate worksheets
 	shot_analysis_sheet = scouting_data.create_sheet(title = "shot analysis")
 	no_sheet = scouting_data.create_sheet(title = "no")
 	init_no_sheet(no_sheet)
@@ -459,6 +480,8 @@ if len(scouting_data.get_sheet_names()) < 3:
 	for defense_sheet in defense_sheets:
 		init_general_sheet(defense_sheet)
 else:
+	# else, the workbook that is being loaded from is presumed to contain all appropriate sheets
+	# the sheets are then assigned to appropriate variables
 	for sheet in scouting_data.worksheets:
 		if sheet.title == "portcullis":
 			portcullis_sheet = sheet
@@ -502,8 +525,6 @@ else:
 		elif sheet.title == "shot analysis":
 			shot_analysis_sheet = sheet
 
-
-print defense_sheets[1]
 
 sheet_names = scouting_data.get_sheet_names()
 
