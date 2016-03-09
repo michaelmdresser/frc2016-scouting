@@ -35,7 +35,7 @@ def init_shot_sheet(worksheet):
 		is_attempts = not is_attempts
 
 	for row in range(2, len(team_list) + 2):
-		worksheet.cell(row = row, column = 1, value = team_list[i - 2])
+		worksheet.cell(row = row, column = 1, value = team_list[row - 2])
 	
 
 def init_shot_analysis_sheet(worksheet):
