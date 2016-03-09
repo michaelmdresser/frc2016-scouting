@@ -14,7 +14,6 @@ team_list = [1, 192, 3, 4, 5, 6, 7, 8, 9, 10,
 team_matches_played = []
 for i in range(0, len(team_list)):
 	team_matches_played.append(0)
-# array.index(value)
 
 def init_no_sheet(worksheet):
 	for row in range(2, len(team_list) + 2):
@@ -40,7 +39,6 @@ def init_shot_sheet(worksheet):
 	
 
 def init_shot_analysis_sheet(worksheet):
-
 	def fill_single_function_column(column, sheet_function, range_start, range_end):
 		for row in range(3, len(team_list) + 3):
 			worksheet.cell(row = row, column = column, value = "=" + sheet_function + "(" + range_start + str(row) + ":" + range_end + str(row) + ")")
@@ -69,7 +67,6 @@ def init_shot_analysis_sheet(worksheet):
 		successes_letter = Alphabet[attempts_index + 1]
 		for row in range(3, len(team_list) + 3):
 			worksheet.cell(row = row, column = column, value = "=low!" + successes_letter + str(row - 1) + "/low!" + attempts_letter + str(row - 1))
-		
 	
 	worksheet.cell(row = 2, column = 12, value = "Average")
 	worksheet.cell(row = 2, column = 13, value = "StDev")
@@ -89,7 +86,6 @@ def init_shot_analysis_sheet(worksheet):
 	for row in range(3, len(team_list) + 3):
 		column = 15
 		worksheet.cell(row = row, column = column, value = "=STDEV(high!C" + str(row - 1) + ", high!E" + str(row - 1) + ", high!G" + str(row - 1) + ", high!I" + str(row - 1) + ", high!K" + str(row - 1) + ", high!M" + str(row - 1) + ", high!O" + str(row - 1) + ", high!Q" + str(row - 1) + ", high!S" + str(row - 1) + ", high!U" + str(row - 1) + ")")
-	
 	
 	for row in range(3, len(team_list) + 3):
 		column = 29
@@ -125,7 +121,6 @@ def init_general_sheet(worksheet):
 		worksheet.cell(row = row, column = 13, value = "=STDEV(B" + str(row) + ":K" + str(row) + ")")
 
 def fill_shot_sheet(worksheet, team_number, matches_played, goal_values):
-	#hi
 	team_index = team_list.index(team_number)
 	matches_played = team_matches_played[team_index]
 
@@ -137,7 +132,6 @@ def fill_shot_sheet(worksheet, team_number, matches_played, goal_values):
 
 def fill_defense_sheet(worksheet, team_number, matches_played, defense_crosses, defense_crosses_index):
 	team_index = team_list.index(team_number)
-	#matches_played = team_matches_played[team_index]
 
 	entry_column = matches_played + 2
 	entry_row = team_index + 2
@@ -161,7 +155,6 @@ def fill_auto_sheet(worksheet, team_number, matches_played, auto_values):
 
 	i = 0
 	while i == 0:
-
 		if auto_choices[5] == 1:
 			entry_value = 0
 		else:
@@ -198,7 +191,6 @@ def fill_rip_sheet(worksheet, team_number, matches_played, rip_value):
 	worksheet.cell(row = entry_row, column = entry_column, value = rip_value)
 
 def data_entry(general_values, auto_values, shooting_values, defenses_chosen, defense_crosses, other_values):
-	# scouting_data is workbook
 	team_number = general_values[0]
 	team_number = int(team_number)
 	team_index = team_list.index(team_number)
@@ -219,14 +211,7 @@ def data_entry(general_values, auto_values, shooting_values, defenses_chosen, de
 		fill_defense_sheet(scouting_data.get_sheet_by_name(defense), team_number, matches_played, defense_crosses, i)
 	
 	fill_defense_sheet(lowbar_sheet, team_number, matches_played, defense_crosses, len(defense_crosses) - 1)
-
-
-
-
-
-	# team_matches_played[team_list.index(team_number)] += 1
 	no_sheet.cell(row = team_index + 2, column = 2).value += 1
-
 	scouting_data.save(workbook_save_name)
 
 def button_entry_test(window, general_entry, auto_choices, shooting_entries, cat_choices, cat_entries, other_choices):
@@ -264,37 +249,12 @@ def button_entry_test(window, general_entry, auto_choices, shooting_entries, cat
 
 	for var in other_choices:
 		other_values.append(var.get())
-	# team_number = general_entry[0].get()
-	# match_number = general_entry[1].get()
-	# auto_reach = auto_choices[0].get()
-	# auto_cross = auto_choices[1].get()
-	# auto_low = auto_choices[2].get()
-	# auto_high = auto_choices[3].get()
-	# auto_recross = auto_choices[4].get()
-	# auto_none = auto_choices[5].get()
-	# high_attempts = shooting_entries[0].get()
-	# high_successes = shooting_entries[1].get()
-	# low_attempts = shooting_entries[2].get()
-	# low_successes = shooting_entries[3].get()
-	# cat_a_choice = cat_choices[0].get()
-	# cat_b_choice = cat_choices[1].get()
-	# cat_c_choice = cat_choices[2].get()
-	# cat_d_choice = cat_choices[3].get()
-	# cat_a_count = cat_entries[0].get()
-	# cat_b_count = cat_entries[1].get()
-	# cat_c_count = cat_entries[2].get()
-	# cat_d_count = cat_entries[3].get()
-	# cat_e_count = cat_entries[4].get()
-	# cross_ball = other_choices[0].get()
-	# climb = other_choices[1].get()
-	# robot_RIP = other_choices[2].get()
 
 	data_entry(general_values, auto_values, shooting_values, 
 			defenses_chosen, defense_crosses, other_values)
 
 def gui_init():
 	window = tkinter.Tk()
-	#window.configure(background = "red")
 	window.title(string = "GRT 2016 Scouting Data Input")
 	window.geometry("750x450")
 
@@ -340,32 +300,24 @@ def gui_init():
 	cat_a_choice = tkinter.Variable()
 	portcullis_choice = tkinter.Radiobutton(window, text = "Portcullis", variable = cat_a_choice, value = "portcullis")
 	cheval_choice = tkinter.Radiobutton(window, text = "Cheval de Frise", variable = cat_a_choice, value = "cheval de frise")
-	#portcullis_label = tkinter.Label(window, text = "portcullis")
-	#cheval_label = tkinter.Label(window, text = "cheval")
 	cat_a_entry = tkinter.Entry(window)
 
 	cat_b_label = tkinter.Label(window, text = "Category B:")
 	cat_b_choice = tkinter.Variable()
 	moat_choice = tkinter.Radiobutton(window, text = "Moat", variable = cat_b_choice, value = "moat")
 	ramparts_choice = tkinter.Radiobutton(window, text = "Ramparts", variable = cat_b_choice, value = "ramparts")
-	#moat_label = tkinter.Label(window, text = "moat")
-	#ramparts_label = tkinter.Label(window, text = "ramparts")
 	cat_b_entry = tkinter.Entry(window)
 
 	cat_c_label = tkinter.Label(window, text = "Category C:")
 	cat_c_choice = tkinter.Variable()
 	drawbridge_choice = tkinter.Radiobutton(window, text = "Drawbridge", variable = cat_c_choice, value = "drawbridge")
 	sally_port_choice = tkinter.Radiobutton(window, text = "Sally Port", variable = cat_c_choice, value = "sally port")
-	#drawbridge_label = tkinter.Label(window, text = "drawbridge")
-	#sally_port_label = tkinter.Label(window, text = "sally port")
 	cat_c_entry = tkinter.Entry()
 
 	cat_d_label = tkinter.Label(window, text = "Category D:")
 	cat_d_choice = tkinter.Variable()
 	rock_wall_choice = tkinter.Radiobutton(window, text = "Rock Wall", variable = cat_d_choice, value = "rock wall")
 	rough_terrain_choice = tkinter.Radiobutton(window, text = "Rough Terrain", variable = cat_d_choice, value = "rough terrain")
-	#rock_wall_label = tkinter.Label(window, text = "rock wall")
-	#rough_terrain_label = tkinter.Label(window, text = "rough terrain")
 	cat_d_entry = tkinter.Entry()
 
 	cat_e_label = tkinter.Label(window, text = "Category E:")
@@ -377,7 +329,6 @@ def gui_init():
 	cat_entries = [cat_a_entry, cat_b_entry, cat_c_entry,
 		cat_d_entry, cat_e_entry]
 
-	#cross_ball_label = tkinter.Label(window, text = "cross w/ ball?")
 	cross_ball_var = tkinter.Variable()
 	cross_ball_check = tkinter.Checkbutton(window, text = "Cross w/ Ball?")
 
@@ -394,8 +345,7 @@ def gui_init():
 
 	button = tkinter.Button(window, text = "Enter", command = (lambda: button_entry_test(window, general_entry, auto_choices, shooting_entries, cat_choices, cat_entries, other_choices)))
 	quit_button = tkinter.Button(window, text = "Quit", command = (lambda: quit_gui(window)))
-	#(lambda event, win = window, entry = team_number_entry: button_entry_test(win, entry))
-
+	
 	team_label.grid(row = 0, column = 0)
 	team_number_entry.grid(row = 1, column = 0)
 
@@ -455,10 +405,8 @@ def gui_init():
 	climb_success.grid(row = 17, column = 3)
 	robot_RIP_button.grid(row = 18, column = 3)
 
-
 	button.grid(row = 0, column = 7)
 	quit_button.grid(row = 1, column = 8)
-	# button_entry_test(window, team_number_entry)
 	window.mainloop()
 	tkinter.mainloop()
 
@@ -467,7 +415,6 @@ def quit_gui(window):
 	scouting_data.save(workbook_save_name)
 	window.quit()
 
-#scouting_data = Workbook('2016_data.xlsx')
 scouting_data = load_workbook(workbook_load_name, data_only = True)
 
 defense_sheets = [None, None, None, None, None, None, None, None, None]
@@ -512,7 +459,6 @@ if len(scouting_data.get_sheet_names()) < 3:
 		init_general_sheet(defense_sheet)
 else:
 	for sheet in scouting_data.worksheets:
-		# sheet.title
 		if sheet.title == "portcullis":
 			portcullis_sheet = sheet
 			defense_sheets[0] = portcullis_sheet
