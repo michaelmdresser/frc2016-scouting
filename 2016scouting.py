@@ -474,7 +474,9 @@ if len(scouting_data.get_sheet_names()) < 3:
 	shot_analysis_sheet = scouting_data.create_sheet(title = "shot analysis")
 	no_sheet = scouting_data.create_sheet(title = "no")
 	init_no_sheet(no_sheet)
-
+	
+	auton_sheet = scouting_data.create_sheet(title = "auton")
+	
 	portcullis_sheet = scouting_data.create_sheet(title = "portcullis")
 	cheval_sheet = scouting_data.create_sheet(title = "cheval de frise")
 	moat_sheet = scouting_data.create_sheet(title = "moat")
@@ -485,7 +487,6 @@ if len(scouting_data.get_sheet_names()) < 3:
 	roughterrain_sheet = scouting_data.create_sheet(title = "rough terrain")
 	lowbar_sheet = scouting_data.create_sheet(title = "lowbar")
 
-	auton_sheet = scouting_data.create_sheet(title = "auton")
 	high_sheet = scouting_data.create_sheet(title = "high")
 	low_sheet = scouting_data.create_sheet(title = "low")
 
