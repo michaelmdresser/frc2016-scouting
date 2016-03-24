@@ -1,15 +1,15 @@
 from openpyxl import *
 import Tkinter as tkinter
 
-workbook_save_name = "scoutingdata.xlsx"
+workbook_save_name = "wisconsindata.xlsx"
 workbook_load_name = "blank.xlsx"
 
-team_list = [60, 125, 192, 269, 498, 662, 698, 842, 846, 991,
-996, 1011, 1165, 1339, 1410, 1492, 1619, 1828, 2122, 2144,
-2375, 2403, 2486, 2493, 2647, 2657, 2996, 3009, 3019, 3187,
-3250, 3256, 3470, 3577, 3598, 3669, 3785, 4146, 4153, 4183,
-4388, 4499, 4550, 4565, 4841, 4985, 5207, 5539, 5613, 5771,
-6109, 6127, 6221, 9999]
+team_list = [192, 269, 537, 706, 930, 1091, 1259, 1306, 1396, 1675,
+1714, 1716, 1732, 1792, 2062, 2077, 2194, 2202, 2358, 2498,
+2500, 2506, 2530, 2574, 2826, 2830, 3102, 3197, 3381, 3418,
+3596, 3692, 3734, 4241, 4247, 4531, 4549, 4786, 4804, 5003,
+5096, 5148, 5552, 5586, 5595, 5773, 5855, 5903, 5976, 6038,
+6058, 6064, 6223, 9999]
 
 # fill array that isn't used any more
 team_matches_played = []
@@ -40,7 +40,6 @@ def init_shot_sheet(worksheet):
 
 	for row in range(2, len(team_list) + 2):
 		worksheet.cell(row = row, column = 1, value = team_list[row - 2])
-	
 
 def init_shot_analysis_sheet(worksheet):
 	# intializes a worksheet that pulls shot data into excel functions for later reading
@@ -431,7 +430,6 @@ def gui_init():
 	window.mainloop()
 	tkinter.mainloop()
 
-
 def quit_gui(window):
 	scouting_data.save(workbook_save_name)
 	window.quit()
@@ -524,7 +522,6 @@ else:
 			rip_sheet = sheet
 		elif sheet.title == "shot analysis":
 			shot_analysis_sheet = sheet
-
 
 sheet_names = scouting_data.get_sheet_names()
 
