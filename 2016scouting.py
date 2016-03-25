@@ -2,7 +2,7 @@ from openpyxl import *
 import Tkinter as tkinter
 
 workbook_save_name = "wisconsindata.xlsx"
-workbook_load_name = "blank.xlsx"
+workbook_load_name = "wisconsindata.xlsx"
 
 team_list = [192, 269, 537, 706, 930, 1091, 1259, 1306, 1396, 1675,
 1714, 1716, 1732, 1792, 2062, 2077, 2194, 2202, 2358, 2498,
@@ -167,21 +167,21 @@ def fill_auto_sheet(worksheet, team_number, matches_played, auto_values):
 
 	i = 0
 	while i == 0:
-		if auto_choices[5] == 1:
+		if auto_values[5] == 1:
 			entry_value = 0
 		else:
-			if auto_choices[0] == 1:
+			if auto_values[0] == 1:
 				entry_value = 1
-			if auto_choices[1] == 1:
+			if auto_values[1] == 1:
 				entry_value = 2
-			if auto_choices[2] == 1:
+			if auto_values[2] == 1:
 				entry_value = 3
-				if auto_choices[4] == 1:
+				if auto_values[4] == 1:
 					entry_value = 5
 					break
-			if auto_choices[3] == 1:
+			if auto_values[3] == 1:
 				entry_value = 4
-				if auto_choices[4] == 1:
+				if auto_values[4] == 1:
 					entry_value = 6
 					break
 		i = 1
