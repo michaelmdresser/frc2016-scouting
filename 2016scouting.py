@@ -316,6 +316,9 @@ def gui_init():
 	low_successes_entry = tkinter.Entry(window)
 	shooting_entries = [high_attempts_entry, high_successes_entry,
 		low_attempts_entry, low_successes_entry]
+		
+	for entry in shooting_entries:
+		entry.insert(0, "0")
 
 	cat_a_label = tkinter.Label(window, text = "Category A:")
 	cat_a_choice = tkinter.Variable()
@@ -349,6 +352,9 @@ def gui_init():
 		cat_c_choice, cat_d_choice]
 	cat_entries = [cat_a_entry, cat_b_entry, cat_c_entry,
 		cat_d_entry, cat_e_entry]
+	
+	for entry in cat_entries:
+		entry.insert(0, "0")
 
 	cross_ball_var = tkinter.Variable()
 	cross_ball_check = tkinter.Checkbutton(window, text = "Cross w/ Ball?")
