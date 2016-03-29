@@ -2,7 +2,7 @@ from openpyxl import *
 import Tkinter as tkinter
 
 workbook_save_name = "test.xlsx"
-workbook_load_name = "blank.xlsx"
+workbook_load_name = "test.xlsx"
 
 team_list = [192, 269, 537, 706, 930, 1091, 1259, 1306, 1396, 1675,
 1714, 1716, 1732, 1792, 2062, 2077, 2194, 2202, 2358, 2498,
@@ -136,8 +136,8 @@ def fill_shot_sheet(worksheet, team_number, matches_played, goal_values):
 	entry_row = team_index + 2
 	print "matches played" + str(matches_played)
 
-	worksheet.cell(row = entry_row, column = entry_column, value = goal_values[0])
-	worksheet.cell(row = entry_row, column = entry_column + 1, value = goal_values[1])
+	worksheet.cell(row = entry_row, column = entry_column, value = int(goal_values[0]))
+	worksheet.cell(row = entry_row, column = entry_column + 1, value = int(goal_values[1]))
 
 def fill_defense_sheet(worksheet, team_number, matches_played, defense_crosses, defense_crosses_index):
 	# takes data from a match and fills it into a defense sheet
@@ -146,7 +146,7 @@ def fill_defense_sheet(worksheet, team_number, matches_played, defense_crosses, 
 	entry_column = matches_played + 2
 	entry_row = team_index + 2
 
-	worksheet.cell(row = entry_row, column = entry_column, value = defense_crosses[defense_crosses_index])
+	worksheet.cell(row = entry_row, column = entry_column, value = int(defense_crosses[defense_crosses_index]))
 
 def fill_ball_cross(team_number, cross_ball_value):
 	# takes data from a match and fills it into the no sheet
@@ -155,7 +155,7 @@ def fill_ball_cross(team_number, cross_ball_value):
 	if ((no_sheet.cell(row = entry_row, column = 3).value == None or
 		no_sheet.cell(row = entry_row, column = 3).value == 0) and
 		(cross_ball_value == 1)):
-		no_sheet.cell(row = entry_row, column = 3).value = cross_ball_value
+		no_sheet.cell(row = entry_row, column = 3).value = int(cross_ball_value)
 
 def fill_auto_sheet(worksheet, team_number, matches_played, auto_values):
 	# takes data from a match and fills it into the auton sheet
@@ -194,7 +194,7 @@ def fill_climb_sheet(worksheet, team_number, matches_played, climb_value):
 	entry_column = matches_played + 2
 	entry_row = team_index + 2
 
-	worksheet.cell(row = entry_row, column = entry_column, value = climb_value)
+	worksheet.cell(row = entry_row, column = entry_column, value = int(climb_value))
 
 def fill_rip_sheet(worksheet, team_number, matches_played, rip_value):
 	# takes data from a match and fills it into the rip sheet
@@ -202,7 +202,7 @@ def fill_rip_sheet(worksheet, team_number, matches_played, rip_value):
 	entry_column = matches_played + 2
 	entry_row = team_index + 2
 
-	worksheet.cell(row = entry_row, column = entry_column, value = rip_value)
+	worksheet.cell(row = entry_row, column = entry_column, value = int(rip_value))
 
 def data_entry(general_values, auto_values, shooting_values, defenses_chosen, defense_crosses, other_values):
 	# takes full set of parsed match data from button_entry and calls data filling functions
