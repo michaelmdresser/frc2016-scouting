@@ -1,8 +1,8 @@
 from openpyxl import *
 import Tkinter as tkinter
 
-workbook_save_name = "wisconsindata.xlsx"
-workbook_load_name = "wisconsindata.xlsx"
+workbook_save_name = "test.xlsx"
+workbook_load_name = "blank.xlsx"
 
 team_list = [192, 269, 537, 706, 930, 1091, 1259, 1306, 1396, 1675,
 1714, 1716, 1732, 1792, 2062, 2077, 2194, 2202, 2358, 2498,
@@ -131,10 +131,10 @@ def init_general_sheet(worksheet):
 def fill_shot_sheet(worksheet, team_number, matches_played, goal_values):
 	# takes data from a match and fills it into a shot sheet
 	team_index = team_list.index(team_number)
-	matches_played = team_matches_played[team_index]
 
-	entry_column = matches_played + 2 + (2 * matches_played)
-	entry_row = team_index + 2 + (2 * matches_played)
+	entry_column = (matches_played * 2) + 2
+	entry_row = team_index + 2
+	print "matches played" + str(matches_played)
 
 	worksheet.cell(row = entry_row, column = entry_column, value = goal_values[0])
 	worksheet.cell(row = entry_row, column = entry_column + 1, value = goal_values[1])
@@ -210,11 +210,12 @@ def data_entry(general_values, auto_values, shooting_values, defenses_chosen, de
 	team_number = int(team_number)
 	team_index = team_list.index(team_number)
 	matches_played = no_sheet.cell(row = team_index + 2, column = 2).value
-	print matches_played
+	
 	matches_played = int(matches_played)
 
 	high_values = [shooting_values[0], shooting_values[1]]
 	low_values = [shooting_values[2], shooting_values[3]]
+	print matches_played
 	fill_shot_sheet(high_sheet, team_number, matches_played, high_values)
 	fill_shot_sheet(low_sheet, team_number, matches_played, low_values)
 	fill_auto_sheet(auton_sheet, team_number, matches_played, auto_values)
