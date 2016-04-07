@@ -2,7 +2,7 @@ from openpyxl import *
 import Tkinter as tkinter
 
 workbook_save_name = "svr.xlsx"
-workbook_load_name = "svr.xlsx"
+workbook_load_name = "blank.xlsx"
 
 team_list = [8, 100, 114, 115, 192, 199, 253, 254, 256, 368,
 581, 604, 649, 668, 670, 751, 766, 841, 846, 852, 971, 972,
@@ -85,26 +85,27 @@ def init_shot_analysis_sheet(worksheet):
 	worksheet.cell(row = 2, column = 30, value = "StDev goals/match")
 	
 	#=AVERAGE(High!C2, High!E2, High!G2, High!I2, High!K2, High!M2, High!O2, High!Q2, High!S2, High!U2)
-	for row in range(3, len(team_list) + 3):
-		column = 14
-		worksheet.cell(row = row, column = column, value = "=AVERAGE(high!C" + str(row - 1) + ", high!E" + str(row - 1) + ", high!G" + str(row - 1) + ", high!I" + str(row - 1) + ", high!K" + str(row - 1) + ", high!M" + str(row - 1) + ", high!O" + str(row - 1) + ", high!Q" + str(row - 1) + ", high!S" + str(row - 1) + ", high!U" + str(row - 1) + ")")
+	# for row in range(3, len(team_list) + 3):
+	# 	column = 14
+	# 	worksheet.cell(row = row, column = column, value = "=AVERAGE(high!C" + str(row - 1) + ", high!E" + str(row - 1) + ", high!G" + str(row - 1) + ", high!I" + str(row - 1) + ", high!K" + str(row - 1) + ", high!M" + str(row - 1) + ", high!O" + str(row - 1) + ", high!Q" + str(row - 1) + ", high!S" + str(row - 1) + ", high!U" + str(row - 1) + ")")
 	
-	for row in range(3, len(team_list) + 3):
-		column = 15
-		worksheet.cell(row = row, column = column, value = "=STDEV(high!C" + str(row - 1) + ", high!E" + str(row - 1) + ", high!G" + str(row - 1) + ", high!I" + str(row - 1) + ", high!K" + str(row - 1) + ", high!M" + str(row - 1) + ", high!O" + str(row - 1) + ", high!Q" + str(row - 1) + ", high!S" + str(row - 1) + ", high!U" + str(row - 1) + ")")
+	# for row in range(3, len(team_list) + 3):
+	# 	column = 15
+	# 	worksheet.cell(row = row, column = column, value = "=STDEV(high!C" + str(row - 1) + ", high!E" + str(row - 1) + ", high!G" + str(row - 1) + ", high!I" + str(row - 1) + ", high!K" + str(row - 1) + ", high!M" + str(row - 1) + ", high!O" + str(row - 1) + ", high!Q" + str(row - 1) + ", high!S" + str(row - 1) + ", high!U" + str(row - 1) + ")")
 	
-	for row in range(3, len(team_list) + 3):
-		column = 29
-		worksheet.cell(row = row, column = column, value = "=AVERAGE(low!C" + str(row - 1) + ", low!E" + str(row - 1) + ", low!G" + str(row - 1) + ", low!I" + str(row - 1) + ", low!K" + str(row - 1) + ", low!M" + str(row - 1) + ", low!O" + str(row - 1) + ", low!Q" + str(row - 1) + ", low!S" + str(row - 1) + ", low!U" + str(row - 1) + ")")
+	# for row in range(3, len(team_list) + 3):
+	# 	column = 29
+	# 	worksheet.cell(row = row, column = column, value = "=AVERAGE(low!C" + str(row - 1) + ", low!E" + str(row - 1) + ", low!G" + str(row - 1) + ", low!I" + str(row - 1) + ", low!K" + str(row - 1) + ", low!M" + str(row - 1) + ", low!O" + str(row - 1) + ", low!Q" + str(row - 1) + ", low!S" + str(row - 1) + ", low!U" + str(row - 1) + ")")
 	
-	for row in range(3, len(team_list) + 3):
-		column = 30
-		worksheet.cell(row = row, column = column, value = "=STDEV(low!C" + str(row - 1) + ", low!E" + str(row - 1) + ", low!G" + str(row - 1) + ", low!I" + str(row - 1) + ", low!K" + str(row - 1) + ", low!M" + str(row - 1) + ", low!O" + str(row - 1) + ", low!Q" + str(row - 1) + ", low!S" + str(row - 1) + ", low!U" + str(row - 1) + ")")
+	# for row in range(3, len(team_list) + 3):
+	# 	column = 30
+	# 	worksheet.cell(row = row, column = column, value = "=STDEV(low!C" + str(row - 1) + ", low!E" + str(row - 1) + ", low!G" + str(row - 1) + ", low!I" + str(row - 1) + ", low!K" + str(row - 1) + ", low!M" + str(row - 1) + ", low!O" + str(row - 1) + ", low!Q" + str(row - 1) + ", low!S" + str(row - 1) + ", low!U" + str(row - 1) + ")")
 	
 	fill_single_function_column(12, "AVERAGE", "B", "K")
 	fill_single_function_column(13, "STDEV", "B", "K")
 	fill_single_function_column(27, "AVERAGE", "Q", "Z")
 	fill_single_function_column(28, "STDEV", "Z", "Q")
+	
 	
 def init_general_sheet(worksheet):
 	# initializes a sheet for general data recording
