@@ -2,7 +2,7 @@ from openpyxl import *
 import Tkinter as tkinter
 
 workbook_save_name = "svr.xlsx"
-workbook_load_name = "blank.xlsx"
+workbook_load_name = "svr.xlsx"
 
 team_list = [8, 100, 114, 115, 192, 199, 253, 254, 256, 368,
 581, 604, 649, 668, 670, 751, 766, 841, 846, 852, 971, 972,
@@ -297,7 +297,21 @@ def gui_init():
 	match_number_entry = tkinter.Entry(window)
 
 	general_entry = [team_number_entry, match_number_entry]
-
+	
+	high_attempts_entry = tkinter.Entry(window)
+	high_successes_entry = tkinter.Entry(window)
+	low_attempts_entry = tkinter.Entry(window)
+	low_successes_entry = tkinter.Entry(window)
+	
+	cat_a_entry = tkinter.Entry(window)
+	cat_b_entry = tkinter.Entry(window)
+	cat_c_entry = tkinter.Entry(window)
+	cat_d_entry = tkinter.Entry(window)
+	cat_e_entry = tkinter.Entry(window)
+	
+	
+	
+	
 	reach_var = tkinter.IntVar()
 	cross_var = tkinter.IntVar()
 	low_var = tkinter.IntVar()
@@ -320,43 +334,38 @@ def gui_init():
 	successes_label0 = tkinter.Label(window, text = "Successes")
 	attempts_label1 = tkinter.Label(window, text = "Attempts")
 	successes_label1 = tkinter.Label(window, text = "Successes")
-	high_attempts_entry = tkinter.Entry(window)
-	high_successes_entry = tkinter.Entry(window)
-	low_attempts_entry = tkinter.Entry(window)
-	low_successes_entry = tkinter.Entry(window)
+	
 	shooting_entries = [high_attempts_entry, high_successes_entry,
 		low_attempts_entry, low_successes_entry]
 		
 	for entry in shooting_entries:
 		entry.insert(0, "0")
-
+		
+	
+	
 	cat_a_label = tkinter.Label(window, text = "Category A:")
 	cat_a_choice = tkinter.Variable()
 	portcullis_choice = tkinter.Radiobutton(window, text = "Portcullis", variable = cat_a_choice, value = "portcullis")
 	cheval_choice = tkinter.Radiobutton(window, text = "Cheval de Frise", variable = cat_a_choice, value = "cheval de frise")
-	cat_a_entry = tkinter.Entry(window)
 
 	cat_b_label = tkinter.Label(window, text = "Category B:")
 	cat_b_choice = tkinter.Variable()
 	moat_choice = tkinter.Radiobutton(window, text = "Moat", variable = cat_b_choice, value = "moat")
 	ramparts_choice = tkinter.Radiobutton(window, text = "Ramparts", variable = cat_b_choice, value = "ramparts")
-	cat_b_entry = tkinter.Entry(window)
-
+	
 	cat_c_label = tkinter.Label(window, text = "Category C:")
 	cat_c_choice = tkinter.Variable()
 	drawbridge_choice = tkinter.Radiobutton(window, text = "Drawbridge", variable = cat_c_choice, value = "drawbridge")
 	sally_port_choice = tkinter.Radiobutton(window, text = "Sally Port", variable = cat_c_choice, value = "sally port")
-	cat_c_entry = tkinter.Entry()
-
+	
 	cat_d_label = tkinter.Label(window, text = "Category D:")
 	cat_d_choice = tkinter.Variable()
 	rock_wall_choice = tkinter.Radiobutton(window, text = "Rock Wall", variable = cat_d_choice, value = "rock wall")
 	rough_terrain_choice = tkinter.Radiobutton(window, text = "Rough Terrain", variable = cat_d_choice, value = "rough terrain")
-	cat_d_entry = tkinter.Entry()
-
+	
 	cat_e_label = tkinter.Label(window, text = "Category E:")
 	low_bar_label = tkinter.Label(window, text = "Low Bar")
-	cat_e_entry = tkinter.Entry()
+	
 
 	cat_choices = [cat_a_choice, cat_b_choice,
 		cat_c_choice, cat_d_choice]
@@ -388,27 +397,26 @@ def gui_init():
 
 	match_label.grid(row = 0, column = 1)
 	match_number_entry.grid(row = 1, column = 1)
+	
+	high_attempts_entry.grid(row = 1, column = 2)
+	high_successes_entry.grid(row = 1, column = 3)
 
-	auto_label.grid(row = 11, column = 0)
-	auto_reach.grid(row = 11, column = 1)
-	auto_cross.grid(row = 11, column = 2)
-	auto_low.grid(row = 11, column = 3)
-	auto_high.grid(row = 12, column = 1)
-	auto_recross.grid(row = 12, column = 2)
-	auto_none.grid(row = 12, column = 3)
+	low_attempts_entry.grid(row = 1, column = 4)
+	low_successes_entry.grid(row = 1, column = 5)
+
+
+	
 
 	#shooting_label.grid(row = 2, column = 0)
 	high_label.grid(row = 0, column = 2)
 	#attempts_label0.grid(row = 4, column = 0)
 	successes_label0.grid(row = 0, column = 3)
-	high_attempts_entry.grid(row = 1, column = 2)
-	high_successes_entry.grid(row = 1, column = 3)
+	
 
 	low_label.grid(row = 0, column = 4)
 	#attempts_label1.grid(row = 7, column = 0)
 	successes_label1.grid(row = 0, column = 5)
-	low_attempts_entry.grid(row = 1, column = 4)
-	low_successes_entry.grid(row = 1, column = 5)
+
 
 	cat_a_label.grid(row = 3, column = 0)
 	cat_a_entry.grid(row = 4, column = 0)
@@ -445,6 +453,14 @@ def gui_init():
 	
 	blank_label0.grid(row = 2, column = 0)
 	blank_label1.grid(row = 7, column = 0)
+	
+	auto_label.grid(row = 11, column = 0)
+	auto_reach.grid(row = 11, column = 1)
+	auto_cross.grid(row = 11, column = 2)
+	auto_low.grid(row = 11, column = 3)
+	auto_high.grid(row = 12, column = 1)
+	auto_recross.grid(row = 12, column = 2)
+	auto_none.grid(row = 12, column = 3)
 	
 	button.grid(row = 0, column = 7)
 	quit_button.grid(row = 1, column = 8)
