@@ -276,9 +276,18 @@ def button_entry(window, general_entry, auto_choices, shooting_entries, cat_choi
 def gui_init():
 	# creates the GUI for entry
 	
+	
+	
 	window = tkinter.Tk()
 	window.title(string = "GRT 2016 Scouting Data Input")
-	window.geometry("750x450")
+	window.geometry("1100x350")
+
+	
+	blank_label0 = tkinter.Label(window, text = "")
+	blank_label1 = tkinter.Label(window, text = "")
+	blank_label2 = tkinter.Label(window, text = "")
+	blank_label3 = tkinter.Label(window, text = "")
+
 
 	team_label = tkinter.Label(window, text = "Team Number")
 	team_number_entry = tkinter.Entry(window)
@@ -402,37 +411,40 @@ def gui_init():
 	low_successes_entry.grid(row = 1, column = 5)
 
 	cat_a_label.grid(row = 3, column = 0)
-    cat_a_entry.grid(row = 4, column = 0)
+	cat_a_entry.grid(row = 4, column = 0)
 	portcullis_choice.grid(row = 5, column = 0)
 	cheval_choice.grid(row = 6, column = 0)
 	
 	cat_b_label.grid(row = 3, column = 1)
-    cat_b_entry.grid(row = 4, column = 1)
+	cat_b_entry.grid(row = 4, column = 1)
 	moat_choice.grid(row = 5, column = 1)
 	ramparts_choice.grid(row = 6, column = 1)
 
 	cat_c_label.grid(row = 3, column = 2)
-    cat_c_entry.grid(row = 4, column = 2)
+	cat_c_entry.grid(row = 4, column = 2)
 	drawbridge_choice.grid(row = 5, column = 2)
 	sally_port_choice.grid(row = 6, column = 2)
 
 	cat_d_label.grid(row = 3, column = 3)
-    cat_d_entry.grid(row = 4, column = 3)
+	cat_d_entry.grid(row = 4, column = 3)
 	rock_wall_choice.grid(row = 5, column = 3)
 	rough_terrain_choice.grid(row = 6, column = 3)
 
 	cat_e_label.grid(row = 3, column = 4)
-    cat_e_entry.grid(row = 4, column = 4)
+	cat_e_entry.grid(row = 4, column = 4)
 	low_bar_label.grid(row = 5, column = 4)
 
 
 	cross_ball_check.grid(row = 9, column = 0)
-    robot_RIP_button.grid(row = 9, column = 2)
+	robot_RIP_button.grid(row = 9, column = 2)
 
 	climbing_label.grid(row = 8, column = 0)
 	climb_no_attempt.grid(row = 8, column = 1)
 	climb_attempt.grid(row = 8, column = 2)
 	climb_success.grid(row = 8, column = 3)
+	
+	blank_label0.grid(row = 2, column = 0)
+	blank_label1.grid(row = 7, column = 0)
 	
 	button.grid(row = 0, column = 7)
 	quit_button.grid(row = 1, column = 8)
