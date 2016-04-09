@@ -2,7 +2,10 @@ from openpyxl import *
 import Tkinter as tkinter
 
 workbook_save_name = "svr.xlsx"
-workbook_load_name = "blank.xlsx"
+workbook_load_name = "svr.xlsx"
+
+# =AVERAGE(high!C2, high!E2, high!G2, high!I2, high!K2, high!M2, high!O2, high!Q2, high!S2, high!U2)
+#=AVERAGE(low!C2, low!E2, low!G2, low!I2, low!K2, low!M2, low!O2, low!Q2, low!S2, low!U2)
 
 team_list = [8, 100, 114, 115, 192, 199, 253, 254, 256, 368,
 581, 604, 649, 668, 670, 751, 766, 841, 846, 852, 971, 972,
@@ -472,7 +475,7 @@ def quit_gui(window):
 	scouting_data.save(workbook_save_name)
 	window.quit()
 
-scouting_data = load_workbook(workbook_load_name, data_only = True)
+scouting_data = load_workbook(workbook_load_name)
 
 defense_sheets = [None, None, None, None, None, None, None, None, None]
 # [portcullis, cheval, moat, ramparts, drawbridge, sally, workwall, roughterrain, lowbar]
